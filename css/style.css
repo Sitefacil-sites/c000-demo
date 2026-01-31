@@ -306,18 +306,28 @@ body{
 }
 
 .hero::after{
-  /* marca d’água com a logo (sempre visível, inclusive no celular) */
+  /* logo como marca d’água centralizada */
   content: "";
   position: absolute;
-  top: 18px;
-  right: 18px;
-  width: 160px;
-  height: 160px;
+  top: 50%;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  transform: translate(-50%, -50%);
   background: url("../assets/client/logo.png") center/contain no-repeat;
-  opacity: .10;
-  filter: grayscale(100%);
+  opacity: .14;            /* visível sem roubar atenção */
   pointer-events: none;
 }
+
+/* Ajuste mobile */
+@media (max-width: 520px){
+  .hero::after{
+    width: 180px;
+    height: 180px;
+    opacity: .16;          /* levemente mais visível no celular */
+  }
+}
+
 
 .hero__inner{
   position: relative;  /* pra ficar acima do ::before/::after */
@@ -349,6 +359,7 @@ body{
     padding: 30px 0;
   }
 }
+
 
 
 
