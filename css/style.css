@@ -283,3 +283,61 @@ body{
   font-size: 22px;
   box-shadow: 0 18px 34px rgba(37,211,102,.30);
 }
+/* ===== REFINO CLEAN (Topo + Marca d'água) ===== */
+
+.hero{
+  min-height: 420px;              /* deixa o topo maior */
+  display: flex;
+  align-items: center;
+}
+
+.hero::before{
+  /* camada para melhorar legibilidade em cima da foto */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(246,247,251,.92) 0%,
+    rgba(246,247,251,.70) 35%,
+    rgba(246,247,251,1) 100%
+  );
+  pointer-events: none;
+}
+
+.hero::after{
+  /* marca d’água com a logo (sempre visível, inclusive no celular) */
+  content: "";
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 160px;
+  height: 160px;
+  background: url("../assets/client/logo.png") center/contain no-repeat;
+  opacity: .10;
+  filter: grayscale(100%);
+  pointer-events: none;
+}
+
+.hero__inner{
+  position: relative;  /* pra ficar acima do ::before/::after */
+  z-index: 1;
+}
+
+/* Ajustes mobile (onde você disse que não aparecia) */
+@media (max-width: 520px){
+  .hero{
+    min-height: 520px;          /* topo mais “presença” no celular */
+  }
+  .hero::after{
+    width: 140px;
+    height: 140px;
+    top: 10px;
+    right: 10px;
+    opacity: .12;              /* um pouco mais visível no mobile */
+  }
+  .hero__inner{
+    padding-top: 52px;
+  }
+}
+
