@@ -5,13 +5,10 @@
   --muted: #475569;
   --line: rgba(15, 23, 42, .10);
 
-  --primary: #2563eb;
   --wa: #25d366;
-
   --shadow: 0 12px 30px rgba(15,23,42,.08);
 
   --radius: 18px;
-  --radiusSm: 12px;
   --container: 1100px;
 }
 
@@ -31,20 +28,21 @@ body{
   margin: 0 auto;
 }
 
-/* HERO */
+/* HERO (sem cortar, sem marca d'água) */
 .hero{
   position: relative;
   overflow: hidden;
-  min-height: 520px;
+  min-height: 600px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--line);
 
+  /* Hero inteiro visível (contain). Sem repetição. */
   background:
     linear-gradient(
       180deg,
       rgba(246,247,251,.92) 0%,
-      rgba(246,247,251,.70) 35%,
+      rgba(246,247,251,.72) 35%,
       rgba(246,247,251,1) 100%
     ),
     url("../assets/client/hero.png") center/contain no-repeat;
@@ -55,40 +53,43 @@ body{
 .hero__inner{
   position: relative;
   z-index: 1;
-  padding: 56px 0 32px 0;
+  padding: 56px 0 34px 0;
 }
 
-/* LOGO ÍCONE (SEM CORTE) */
-.logo{
-  width: 86px;
-  height: 86px;
-  object-fit: contain;              /* NÃO CORTA */
-  padding: 10px;
-  border-radius: 18px;
-  background: rgba(255,255,255,.90);
-  border: 1px solid var(--line);
-  box-shadow: 0 10px 22px rgba(15,23,42,.10);
-  display: block;
-}
-
-/* MARCA D’ÁGUA CENTRAL (SEM CORTE) */
-.hero::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("../assets/client/logo.png") center/contain no-repeat;
-  opacity: .14;
-  pointer-events: none;
-}
-
-/* TOPO */
+/* Topo: logo + badge */
 .hero__top{
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
-/* TEXTOS */
+/* LOGO ÍCONE (sempre inteira, sem corte) */
+.logo{
+  width: 86px;
+  height: 86px;
+  object-fit: contain;              /* NÃO CORTA */
+  padding: 10px;                    /* “moldura” pra logos retangulares */
+  border-radius: 18px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 22px rgba(15,23,42,.10);
+  display: block;
+}
+
+/* Badge */
+.badge{
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.78);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+  backdrop-filter: blur(8px);
+}
+
+/* Textos */
 .hero__title{
   margin: 18px 0 8px 0;
   font-size: clamp(30px, 3.4vw, 42px);
@@ -99,26 +100,26 @@ body{
   margin: 0 0 22px 0;
   color: var(--muted);
   font-size: 16px;
-  max-width: 680px;
+  max-width: 720px;
 }
 
-/* AÇÕES */
+/* Ações */
 .hero__actions{
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
 }
 
-/* BOTÕES */
+/* Botões */
 .btn{
   appearance: none;
   border: 1px solid var(--line);
-  background: rgba(255,255,255,.85);
+  background: rgba(255,255,255,.86);
   color: var(--text);
   padding: 13px 18px;
   border-radius: 14px;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 750;
   font-size: 14px;
   box-shadow: 0 10px 20px rgba(15,23,42,.08);
 }
@@ -131,10 +132,10 @@ body{
 }
 
 .btn--ghost{
-  background: rgba(255,255,255,.85);
+  background: rgba(255,255,255,.86);
 }
 
-/* META */
+/* Meta */
 .hero__meta{
   margin-top: 16px;
   color: var(--muted);
@@ -173,7 +174,7 @@ body{
   grid-template-columns: repeat(12, 1fr);
 }
 
-/* CARDS */
+/* CARD */
 .card{
   grid-column: span 12;
   background: var(--card);
@@ -193,11 +194,18 @@ body{
 }
 
 .card--soft{
-  background: rgba(255,255,255,.85);
+  background: rgba(255,255,255,.86);
   box-shadow: none;
 }
 
 /* PRODUTOS */
+.product__top{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
 .product__name{
   margin: 0;
   font-size: 16px;
@@ -214,38 +222,47 @@ body{
   padding: 6px 10px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: rgba(255,255,255,.85);
+  background: rgba(255,255,255,.86);
   color: var(--muted);
   font-size: 12px;
+  white-space: nowrap;
 }
 
 .price{
-  font-weight: 800;
+  font-weight: 850;
   font-size: 18px;
   margin: 0 0 12px 0;
 }
 
 .price--consulta{
   color: var(--muted);
-  font-weight: 700;
+  font-weight: 750;
   font-size: 14px;
 }
 
-/* BOTÕES PEQUENOS */
+/* Botões pequenos */
+.row{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
 .btnSmall{
   padding: 10px 14px;
   border-radius: 12px;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 750;
   font-size: 13px;
   border: 1px solid var(--line);
-  background: rgba(255,255,255,.85);
+  background: rgba(255,255,255,.86);
   color: var(--text);
 }
 
 .btnSmall--wa{
   background: var(--wa);
   color: #fff;
+  border-color: rgba(0,0,0,.06);
 }
 
 /* FOOTER */
@@ -260,7 +277,7 @@ body{
   font-size: 13px;
 }
 
-/* BOTÃO FLUTUANTE */
+/* FAB WhatsApp */
 .fab{
   position: fixed;
   right: 16px;
@@ -279,9 +296,8 @@ body{
 
 /* MOBILE */
 @media (max-width: 520px){
-  .hero{
-    min-height: 600px;
-  }
+  .hero{ min-height: 640px; }
+  .hero__inner{ padding: 56px 0 30px 0; }
 
   .logo{
     width: 78px;
@@ -289,25 +305,5 @@ body{
     padding: 10px;
   }
 
-  .section{
-    padding: 30px 0;
-  }
+  .section{ padding: 30px 0; }
 }
-/* ===== OVERRIDE FORÇADO CLEAN ===== */
-
-.hero{
-  min-height: 600px !important;
-  background-size: contain !important;
-}
-
-.hero::after{
-  background-size: contain !important;
-  opacity: .16 !important;
-}
-
-.logo{
-  width: 90px !important;
-  height: 90px !important;
-  object-fit: contain !important;
-}
-
