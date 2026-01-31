@@ -36,7 +36,7 @@ body{
   border-bottom: 1px solid var(--line);
   background:
     linear-gradient(180deg, rgba(37,99,235,.10), rgba(246,247,251,1)),
-    url("../assets/client/hero.png") center/cover no-repeat;
+    url("../assets/client/hero.jpg") center/cover no-repeat;
   min-height: 320px;
 }
 
@@ -283,4 +283,3 @@ body{
   font-size: 22px;
   box-shadow: 0 18px 34px rgba(37,211,102,.30);
 }
-
