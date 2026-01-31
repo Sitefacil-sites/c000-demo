@@ -293,3 +293,21 @@ body{
     padding: 30px 0;
   }
 }
+/* ===== OVERRIDE FORÇADO CLEAN ===== */
+
+.hero{
+  min-height: 600px !important;
+  background-size: contain !important;
+}
+
+.hero::after{
+  background-size: contain !important;
+  opacity: .16 !important;
+}
+
+.logo{
+  width: 90px !important;
+  height: 90px !important;
+  object-fit: contain !important;
+}
+
