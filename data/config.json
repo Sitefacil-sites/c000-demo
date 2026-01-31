@@ -1,10 +1,21 @@
 {
   "businessName": "Site Fácil Demo",
-  "headline": "Seu site simples e funcionando",
+  "headline": "Página rápida e bonita para gerar conversa no WhatsApp.",
+  "badge": "Atendimento em Fortaleza",
   "model": "catalogo",
-  "visual": "impacto",
+  "visual": "clean",
   "whatsapp": "5585999999999",
   "phone": "5585999999999",
-  "mapLink": "https://maps.google.com",
-  "defaultMessage": "Olá, vi seu site e quero mais informações."
+  "mapLink": "https://www.google.com/maps",
+  "defaultMessage": "Olá! Vi seu site e quero mais informações.",
+  "catalog": {
+    "title": "Modelos disponíveis",
+    "desc": "Clique no item e fale direto no WhatsApp."
+  },
+  "local": {
+    "address": "Fortaleza - CE",
+    "hours": "Seg a Sáb: 09h às 19h",
+    "note": "Atendimento mediante agendamento."
+  },
+  "footerText": "© Site Fácil"
 }
