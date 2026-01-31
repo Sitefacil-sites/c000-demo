@@ -1,126 +1,199 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Ajuda MUITO a evitar cache chato no iPhone/GitHub Pages -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
   <title>Site Fácil</title>
-  <meta name="description" content="Página Site Fácil" />
-  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body class="clean">
-  <header class="hero" id="hero">
-    <div class="container hero__inner">
-      <div class="hero__top">
-        <img class="logo" src="assets/client/logo.png" alt="Logo" />
-        <span class="badge" id="badge">Site Fácil</span>
+<body>
+  <!-- TOPBAR FIXA -->
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="#topo" aria-label="Voltar ao topo">
+        <img class="brand__logo" src="assets/client/logo.png" alt="Logo" />
+        <span class="brand__name">Site Fácil</span>
+      </a>
+
+      <div class="topbar__actions">
+        <a class="btn btn--wa" id="btnTopWhats" href="#" target="_blank" rel="noopener">WhatsApp</a>
+
+        <button class="iconBtn" id="btnMenu" aria-label="Abrir menu" aria-controls="drawer" aria-expanded="false">
+          <span class="hamburger" aria-hidden="true"></span>
+        </button>
       </div>
-
-      <h1 class="hero__title" id="business-name">Sua Empresa</h1>
-      <p class="hero__subtitle" id="headline">Seu site simples e funcionando.</p>
-
-      <div class="hero__actions">
-        <a class="btn btn--primary" id="btn-whatsapp" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="btn btn--ghost" id="btn-phone">Ligar</a>
-        <a class="btn btn--ghost" id="btn-map" target="_blank" rel="noopener">Mapa</a>
-      </div>
-
-      <div class="hero__meta" id="hero-meta"></div>
     </div>
   </header>
 
-  <main class="container">
-    <!-- Seção Catálogo -->
-    <section class="section" id="section-catalogo" hidden>
-      <div class="section__header">
-        <h2 class="section__title" id="catalog-title">Produtos</h2>
-        <p class="section__desc" id="catalog-desc">Escolha e chame no WhatsApp.</p>
-      </div>
+  <!-- DRAWER MENU -->
+  <div class="overlay" id="overlay" hidden></div>
 
-      <div class="grid" id="products"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__top">
+      <div class="drawer__title">Menu</div>
+      <button class="iconBtn" id="btnClose" aria-label="Fechar menu">
+        <span class="closeX" aria-hidden="true">✕</span>
+      </button>
+    </div>
+
+    <nav class="drawer__nav">
+      <a class="drawer__link" href="#produtos">Produtos</a>
+      <a class="drawer__link" href="#quem">Quem somos</a>
+      <a class="drawer__link" href="#faq">Dúvidas (FAQ)</a>
+      <a class="drawer__link" href="#contato">Fale conosco</a>
+    </nav>
+
+    <div class="drawer__cta">
+      <a class="btn btn--wa btn--block" id="btnMenuWhats" href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
+      <p class="drawer__hint">Resposta rápida • Página leve • Foco em WhatsApp</p>
+    </div>
+  </aside>
+
+  <main id="topo" class="page">
+    <!-- BANNER GRANDE (ARTE/LOGO DO CLIENTE) -->
+    <section class="section section--first">
+      <div class="container">
+        <div class="bannerCard" role="img" aria-label="Banner do cliente">
+          <img class="bannerCard__img" src="assets/client/banner.png" alt="Banner" />
+        </div>
+      </div>
     </section>
 
-    <!-- Seção Serviço (placeholder para depois) -->
-    <section class="section" id="section-servico" hidden>
-      <div class="section__header">
-        <h2 class="section__title">Como funciona</h2>
-        <p class="section__desc">Explique em 3 passos e converta.</p>
-      </div>
+    <!-- HERO (ESQUERDA) -->
+    <section class="section section--hero">
+      <div class="container">
+        <div class="hero">
+          <div class="hero__left">
+            <div class="pill">Atendimento em Fortaleza</div>
+            <h1 class="hero__title">Site Fácil Demo</h1>
+            <p class="hero__subtitle">
+              Página rápida e bonita para gerar conversa no WhatsApp.
+            </p>
 
-      <div class="grid grid--3">
-        <div class="card card--soft">
-          <h3 class="card__title">1) Chame no WhatsApp</h3>
-          <p class="card__text">Clique e envie uma mensagem pronta.</p>
-        </div>
-        <div class="card card--soft">
-          <h3 class="card__title">2) Tire dúvidas rápido</h3>
-          <p class="card__text">Atendimento direto, sem burocracia.</p>
-        </div>
-        <div class="card card--soft">
-          <h3 class="card__title">3) Feche com confiança</h3>
-          <p class="card__text">Página clara e profissional.</p>
+            <div class="hero__buttons">
+              <a class="btn btn--wa" id="btnHeroWhats" href="#" target="_blank" rel="noopener">WhatsApp</a>
+              <a class="btn btn--soft" id="btnHeroCall" href="#">Ligar</a>
+              <a class="btn btn--soft" id="btnHeroMap" href="#" target="_blank" rel="noopener">Mapa</a>
+            </div>
+
+            <p class="hero__meta">Resposta rápida • Página leve • Foco em WhatsApp</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Seção Local (placeholder para depois) -->
-    <section class="section" id="section-local" hidden>
-      <div class="section__header">
-        <h2 class="section__title">Atendimento</h2>
-        <p class="section__desc">Horário, endereço e como chegar.</p>
-      </div>
+    <!-- PRODUTOS -->
+    <section class="section" id="produtos">
+      <div class="container">
+        <div class="sectionHead">
+          <h2 class="sectionHead__title">Modelos disponíveis</h2>
+          <p class="sectionHead__desc">Clique no item e fale direto no WhatsApp.</p>
+        </div>
 
-      <div class="card card--soft">
-        <div class="kv" id="local-info"></div>
+        <div class="grid" id="productsGrid">
+          <!-- Cards gerados pelo JS -->
+        </div>
       </div>
     </section>
-<section class="section">
-  <div class="section__header">
-    <h2 class="section__title">Por que escolher</h2>
-    <p class="section__desc">Página leve, bonita e focada em conversão.</p>
-  </div>
 
-  <div class="grid grid--3">
-    <div class="card card--soft">
-      <h3 class="card__title">Rápido no celular</h3>
-      <p class="card__text">Abre instantâneo e não trava.</p>
-    </div>
-    <div class="card card--soft">
-      <h3 class="card__title">Foco no WhatsApp</h3>
-      <p class="card__text">Leva o cliente direto pra conversa certa.</p>
-    </div>
-    <div class="card card--soft">
-      <h3 class="card__title">Atualização simples</h3>
-      <p class="card__text">Produtos e preços ficam fáceis de trocar.</p>
-    </div>
-  </div>
-</section>
+    <!-- QUEM SOMOS -->
+    <section class="section" id="quem">
+      <div class="container">
+        <div class="sectionHead">
+          <h2 class="sectionHead__title">Quem somos</h2>
+          <p class="sectionHead__desc">Atendimento simples, rápido e direto ao ponto.</p>
+        </div>
 
-<section class="section">
-  <div class="section__header">
-    <h2 class="section__title">Perguntas frequentes</h2>
-    <p class="section__desc">Respostas rápidas para tirar dúvidas.</p>
-  </div>
+        <div class="card card--soft">
+          <p class="p">
+            Somos uma equipe focada em atendimento e conversão via WhatsApp.
+            Aqui você encontra informações claras, produtos organizados e contato imediato.
+          </p>
 
-  <div class="card card--soft">
-    <p class="card__text"><strong>Como faço para comprar?</strong><br>É só clicar no WhatsApp e pedir o modelo desejado.</p>
-    <p class="card__text"><strong>Tem garantia?</strong><br>Consulte no WhatsApp e confirme as condições do aparelho/serviço.</p>
-    <p class="card__text"><strong>Vocês entregam?</strong><br>Informe seu bairro no WhatsApp para confirmar entrega/retirada.</p>
-  </div>
-</section>
+          <div class="bullets">
+            <div class="bullet">✅ Resposta rápida</div>
+            <div class="bullet">✅ Transparência</div>
+            <div class="bullet">✅ Suporte no WhatsApp</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="sectionHead">
+          <h2 class="sectionHead__title">Dúvidas frequentes</h2>
+          <p class="sectionHead__desc">Respostas rápidas para facilitar sua decisão.</p>
+        </div>
+
+        <div class="faq">
+          <details class="faq__item">
+            <summary class="faq__q">Como faço para comprar?</summary>
+            <div class="faq__a">Clique em WhatsApp e informe o produto/modelo desejado.</div>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__q">Tem entrega ou retirada?</summary>
+            <div class="faq__a">Fale no WhatsApp para confirmar entrega/retirada e prazos.</div>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__q">Formas de pagamento?</summary>
+            <div class="faq__a">Confirmamos no WhatsApp as formas disponíveis (pix, cartão etc.).</div>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__q">Garantia e condições</summary>
+            <div class="faq__a">As condições variam por produto. Chame no WhatsApp para detalhes.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="section" id="contato">
+      <div class="container">
+        <div class="sectionHead">
+          <h2 class="sectionHead__title">Fale conosco</h2>
+          <p class="sectionHead__desc">Escolha a forma mais rápida para falar com a gente.</p>
+        </div>
+
+        <div class="card">
+          <div class="contactRow">
+            <a class="btn btn--wa" id="btnBottomWhats" href="#" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn btn--soft" id="btnBottomCall" href="#">Ligar</a>
+            <a class="btn btn--soft" id="btnBottomMap" href="#" target="_blank" rel="noopener">Mapa</a>
+          </div>
+
+          <div class="smallMeta">
+            <div><strong>Horário:</strong> Seg–Sáb • 08:00–18:00</div>
+            <div><strong>Endereço:</strong> Fortaleza-CE</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer class="footer">
-      <p class="footer__text" id="footer-text">© Site Fácil</p>
+      <div class="container">
+        <div class="footer__inner">
+          <div class="footer__text">© Site Fácil • Página leve e objetiva</div>
+          <a class="footer__link" href="#topo">Voltar ao topo</a>
+        </div>
+      </div>
     </footer>
-  </main>
 
-  <!-- Botão flutuante WhatsApp -->
-  <a class="fab" id="whatsapp-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
-    💬
-  </a>
+    <!-- FAB WhatsApp -->
+    <a class="fab" id="fabWhats" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">💬</a>
+  </main>
 
   <script src="js/app.js"></script>
 </body>
 </html>
-
-
