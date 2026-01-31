@@ -1,45 +1,141 @@
-async function loadSite() {
-  const config = await fetch('data/config.json').then(r => r.json());
+function waLink(phone, text){
+  const base = `https://wa.me/${phone}`;
+  return `${base}?text=${encodeURIComponent(text)}`;
+}
 
-  document.body.classList.add(config.visual);
-  document.getElementById('business-name').innerText = config.businessName;
-  document.getElementById('headline').innerText = config.headline;
+async function loadJSON(path){
+  const res = await fetch(path, { cache: "no-store" });
+  if(!res.ok) throw new Error(`Falha ao carregar ${path}`);
+  return res.json();
+}
 
-  const waLink = `https://wa.me/${config.whatsapp}?text=${encodeURIComponent(config.defaultMessage)}`;
+function setText(id, value){
+  const el = document.getElementById(id);
+  if(el && value !== undefined && value !== null) el.textContent = value;
+}
 
-  document.getElementById('btn-whatsapp').href = waLink;
-  document.getElementById('whatsapp-float').href = waLink;
-  document.getElementById('btn-phone').href = `tel:${config.phone}`;
-  document.getElementById('btn-map').href = config.mapLink;
+function show(id, visible){
+  const el = document.getElementById(id);
+  if(el) el.hidden = !visible;
+}
 
-  if (config.model === "catalogo") {
-    loadCatalog();
+function formatPrice(p){
+  // p já vem como string ("3.500"). Mantém simples.
+  return `R$ ${p}`;
+}
+
+async function init(){
+  const config = await loadJSON("data/config.json");
+
+  // Visual
+  document.body.classList.remove("clean","impacto");
+  document.body.classList.add(config.visual || "clean");
+
+  // Textos
+  setText("business-name", config.businessName);
+  setText("headline", config.headline);
+  setText("badge", config.badge || "Site Fácil");
+  setText("footer-text", config.footerText || "© Site Fácil");
+
+  // Catálogo header
+  if(config.catalog){
+    setText("catalog-title", config.catalog.title);
+    setText("catalog-desc", config.catalog.desc);
+  }
+
+  // Links globais
+  const msgDefault = config.defaultMessage || "Olá! Quero mais informações.";
+  const waDefault = waLink(config.whatsapp, msgDefault);
+
+  const btnWA = document.getElementById("btn-whatsapp");
+  const fab = document.getElementById("whatsapp-fab");
+  const btnPhone = document.getElementById("btn-phone");
+  const btnMap = document.getElementById("btn-map");
+
+  if(btnWA) btnWA.href = waDefault;
+  if(fab) fab.href = waDefault;
+  if(btnPhone) btnPhone.href = `tel:${config.phone || config.whatsapp}`;
+  if(btnMap) btnMap.href = config.mapLink || "https://www.google.com/maps";
+
+  // Meta abaixo dos botões
+  const meta = document.getElementById("hero-meta");
+  if(meta){
+    meta.textContent = "Resposta rápida • Página leve • Foco em WhatsApp";
+  }
+
+  // Mostrar seções pelo modelo
+  const model = (config.model || "catalogo").toLowerCase();
+  show("section-catalogo", model === "catalogo");
+  show("section-servico", model === "servico");
+  show("section-local", model === "local");
+
+  // Local info (se usar modelo local)
+  if(model === "local" && config.local){
+    const box = document.getElementById("local-info");
+    if(box){
+      box.innerHTML = `
+        <div><strong>Endereço:</strong> ${config.local.address || ""}</div>
+        <div><strong>Horário:</strong> ${config.local.hours || ""}</div>
+        <div><strong>Obs:</strong> ${config.local.note || ""}</div>
+      `;
+    }
+  }
+
+  // Render catálogo
+  if(model === "catalogo"){
+    const products = await loadJSON("data/produtos.json");
+    renderCatalog(products, config);
   }
 }
 
-async function loadCatalog() {
-  const products = await fetch('data/produtos.json').then(r => r.json());
-  const content = document.getElementById('content');
+function renderCatalog(products, config){
+  const grid = document.getElementById("products");
+  if(!grid) return;
+
+  grid.innerHTML = "";
 
   products.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'card';
+    const nome = p.nome || "Item";
+    const desc = p.descricao || "";
+    const status = p.status || "";
+    const preco = (p.preco || "").trim();
 
-    const price = p.preco
-      ? `R$ ${p.preco}`
-      : `<span class="price consulta">Sob consulta</span>`;
+    const priceHtml = preco
+      ? `<p class="price">${formatPrice(preco)}</p>`
+      : `<p class="price price--consulta">Sob consulta</p>`;
 
+    const text = `Olá! Tenho interesse no ${nome}${desc ? " ("+desc+")" : ""}.`;
+    const link = waLink(config.whatsapp, text);
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.gridColumn = "span 12";
+
+    // responsivo via CSS: já definido pra 6/4 em telas maiores
     card.innerHTML = `
-      <h3>${p.nome}</h3>
-      <p>${p.descricao || ''}</p>
-      <div class="price">${price}</div>
-      <a href="https://wa.me/?text=${encodeURIComponent('Tenho interesse no ' + p.nome)}" target="_blank">
-        Falar no WhatsApp
-      </a>
+      <div class="product__top">
+        <div>
+          <h3 class="product__name">${nome}</h3>
+          ${desc ? `<p class="product__desc">${desc}</p>` : `<div style="height:10px"></div>`}
+        </div>
+        ${status ? `<span class="tag">${status}</span>` : ``}
+      </div>
+
+      ${priceHtml}
+
+      <div class="row">
+        <a class="btnSmall btnSmall--wa" href="${link}" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btnSmall" href="tel:${config.phone || config.whatsapp}">Ligar</a>
+        <a class="btnSmall" href="${config.mapLink || "https://www.google.com/maps"}" target="_blank" rel="noopener">Mapa</a>
+      </div>
     `;
 
-    content.appendChild(card);
+    grid.appendChild(card);
   });
 }
 
-loadSite();
+init().catch(err => {
+  console.error(err);
+  const el = document.getElementById("headline");
+  if(el) el.textContent = "Erro ao carregar dados. Confira a pasta /data e os caminhos.";
+});
