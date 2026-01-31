@@ -1,13 +1,19 @@
 [
   {
     "nome": "iPhone 13",
-    "descricao": "128GB - Preto",
-    "preco": "3500",
+    "descricao": "128GB • Preto",
+    "preco": "3.500",
     "status": "Disponível"
   },
   {
     "nome": "iPhone 12",
-    "descricao": "64GB - Branco",
+    "descricao": "64GB • Branco",
+    "preco": "",
+    "status": "Últimas unidades"
+  },
+  {
+    "nome": "iPhone 11",
+    "descricao": "64GB • Preto",
     "preco": "",
     "status": "Sob consulta"
   }
