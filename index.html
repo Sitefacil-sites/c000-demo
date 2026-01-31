@@ -1,28 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Site Fácil</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="Página Site Fácil" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
 
-<header id="hero">
-  <h1 id="business-name"></h1>
-  <p id="headline"></p>
+<body class="clean">
+  <header class="hero" id="hero">
+    <div class="container hero__inner">
+      <div class="hero__top">
+        <img class="logo" src="assets/client/logo.png" alt="Logo" />
+        <span class="badge" id="badge">Site Fácil</span>
+      </div>
 
-  <div class="cta-buttons">
-    <a id="btn-whatsapp" target="_blank">WhatsApp</a>
-    <a id="btn-phone">Ligar</a>
-    <a id="btn-map" target="_blank">Mapa</a>
-  </div>
-</header>
+      <h1 class="hero__title" id="business-name">Sua Empresa</h1>
+      <p class="hero__subtitle" id="headline">Seu site simples e funcionando.</p>
 
-<main id="content"></main>
+      <div class="hero__actions">
+        <a class="btn btn--primary" id="btn-whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn--ghost" id="btn-phone">Ligar</a>
+        <a class="btn btn--ghost" id="btn-map" target="_blank" rel="noopener">Mapa</a>
+      </div>
 
-<a id="whatsapp-float" target="_blank">💬</a>
+      <div class="hero__meta" id="hero-meta"></div>
+    </div>
+  </header>
 
-<script src="js/app.js"></script>
+  <main class="container">
+    <!-- Seção Catálogo -->
+    <section class="section" id="section-catalogo" hidden>
+      <div class="section__header">
+        <h2 class="section__title" id="catalog-title">Produtos</h2>
+        <p class="section__desc" id="catalog-desc">Escolha e chame no WhatsApp.</p>
+      </div>
+
+      <div class="grid" id="products"></div>
+    </section>
+
+    <!-- Seção Serviço (placeholder para depois) -->
+    <section class="section" id="section-servico" hidden>
+      <div class="section__header">
+        <h2 class="section__title">Como funciona</h2>
+        <p class="section__desc">Explique em 3 passos e converta.</p>
+      </div>
+
+      <div class="grid grid--3">
+        <div class="card card--soft">
+          <h3 class="card__title">1) Chame no WhatsApp</h3>
+          <p class="card__text">Clique e envie uma mensagem pronta.</p>
+        </div>
+        <div class="card card--soft">
+          <h3 class="card__title">2) Tire dúvidas rápido</h3>
+          <p class="card__text">Atendimento direto, sem burocracia.</p>
+        </div>
+        <div class="card card--soft">
+          <h3 class="card__title">3) Feche com confiança</h3>
+          <p class="card__text">Página clara e profissional.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Local (placeholder para depois) -->
+    <section class="section" id="section-local" hidden>
+      <div class="section__header">
+        <h2 class="section__title">Atendimento</h2>
+        <p class="section__desc">Horário, endereço e como chegar.</p>
+      </div>
+
+      <div class="card card--soft">
+        <div class="kv" id="local-info"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p class="footer__text" id="footer-text">© Site Fácil</p>
+    </footer>
+  </main>
+
+  <!-- Botão flutuante WhatsApp -->
+  <a class="fab" id="whatsapp-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
+    💬
+  </a>
+
+  <script src="js/app.js"></script>
 </body>
 </html>
