@@ -48,11 +48,12 @@ body{
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-bottom:10px;
 }
 
 .logo{
-  width: 54px;
-  height: 54px;
+  width: 56px;
+  height: 56px;
   border-radius: 14px;
   object-fit: cover;
   background: #fff;
@@ -309,22 +310,24 @@ body{
   /* logo como marca d’água centralizada */
   content: "";
   position: absolute;
-  top: 50%;
+  top: 54%;
   left: 50%;
-  width: 220px;
-  height: 220px;
+  width: 260px;
+  height: 260px;
   transform: translate(-50%, -50%);
   background: url("../assets/client/logo.png") center/contain no-repeat;
-  opacity: .14;            /* visível sem roubar atenção */
+  opacity: .35;            /* visível sem roubar atenção */
   pointer-events: none;
+  z-index:0;
 }
 
 /* Ajuste mobile */
 @media (max-width: 520px){
   .hero::after{
-    width: 180px;
-    height: 180px;
-    opacity: .16;          /* levemente mais visível no celular */
+    top:60%;
+    width: 210px;
+    height: 210px;
+    opacity: .38;          /* levemente mais visível no celular */
   }
 }
 
@@ -359,6 +362,7 @@ body{
     padding: 30px 0;
   }
 }
+
 
 
 
